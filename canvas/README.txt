@@ -1,6 +1,5 @@
 Unas plantillas de codigo para programar graficos en canvas que podrian servir en cualquier lugar que programe gráficos.
 
-Básicamente hago lo siguiente:
 1 - Creo un bufer donde realmente dibujo
 
 2 - La función 'actualizar' dibuja lo que esta en el buffer a la pantalla
