@@ -1,3 +1,2 @@
-# hello-world
-My first repository
-Changes and more changes
+# My code templates
+Here I only save code templates for my personal projects
