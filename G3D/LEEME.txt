@@ -1,0 +1,7 @@
+El archivo binario "G3D" que está en esta misma carpeta es el ejecutable del proyecto en si.
+El jar ejecutable en la carpeta "Rubik" es una interfaz grafica hecha en java que debe
+combinarse con "G3D" para mostrar un cubo de rubik. Lo que realmente hace ese jar es producir
+por la salida los comandos que deben introducirse por la entrada de G3D. Para hacerlo hay que
+ejecutar los 2 programas de la siguiente manera:
+
+java -jar Rubik/Rubik.jar | ./G3D
