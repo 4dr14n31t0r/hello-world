@@ -1,4 +1,5 @@
 Unas plantillas de codigo para programar graficos en canvas que podrian servir en cualquier lugar que programe gráficos.
+Estos 2 archivos muestran como dibujar en perspectiva conica usando solamente canvas con el contexto de 2D.
 
 1 - Creo un bufer donde realmente dibujo.
 
