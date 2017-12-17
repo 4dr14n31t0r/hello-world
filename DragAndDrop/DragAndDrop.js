@@ -1,14 +1,3 @@
-/*
-dragstart
-drag
-dragend
-
-dragenter
-dragover
-dragleave
-drop
-*/
-
 window.addEventListener('load',function(){
     var dragstart   = document.getElementById('dragstart',false);
     var drag        = document.getElementById('drag',false);
