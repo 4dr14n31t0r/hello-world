@@ -1,0 +1,33 @@
+<html>
+<head></head>
+<body>
+	<table style="width: 100%">
+		<tr>
+			<td style="text-align: left"><a href="">Volver</a></td>
+			<td style="text-align: right">
+				<!-- Una vez hecho el login en vez de esos dos links debe aparecer uno de logout -->
+				<!-- De momento vamos a olvidarnos del perfil de usuario -->
+				<a href="login?desde=index">Login</a><br/>
+				<a href="registro?desde=index">Registrarse</a>
+			</td>
+		</tr>
+	</table>
+	<hr/>
+	<div style="text-align: center">
+		<input type="text" placeholder="Titulo" style="text-align: center"/><br/>
+		<textarea style="width:50%" placeholder="Descripcion"></textarea>
+	</div>
+	<p><input type="text" placeholder="Pregunta"/></p>
+	<p>
+		<!-- Solo se admiten encuestas con respuestas de tipo checkbox -->
+		<!-- TODO: Darle al usuario la capacidad de eliminar una respuesta despues de añadirla -->
+		<input type="text" placeholder="respuesta"/><br/>
+		<input type="text" placeholder="respuesta"/><br/>
+		<input type="text" placeholder="respuesta"/><br/>
+		<input type="button" value="Añadir opcion"/>
+	</p>
+	<input type="button" value="Añadir pregunta"/>
+	<p/>
+	<input type="submit" value="Enviar"/>
+</body>
+</html>

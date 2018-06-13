@@ -1,0 +1,58 @@
+<html>
+<head></head>
+<body>
+	<form>
+		<table style="width: 100%">
+			<tr>
+				<td style="text-align: left">
+					<input type="text" name="buscar"/>
+					<input type="button" value="Buscar"/>
+				</td>
+				<td>
+					<label for="ordenacion">Ordenar por:</label>
+					<select name="ordenacion" id="ordenacion">
+						<!-- Nota: NO carges los options desde django.
+						<!-- De hacerlo tendrias que montar un follon con la tabla que muestra los -->
+						<!-- datos añadiendo y quitando columnas tambien -->
+						<option value="likes">Likes</option>
+						<option value="fecha">Fecha de publicación</option>
+						<option value="numRespuestas">Número de respuestas</option>
+						<option value="numComentarios">Número de comentarios</option>
+						<option value="numComentarios">Número de comentarios</option>
+					</select>
+				</td>
+				<td style="text-align: right">
+					<!-- Una vez hecho el login en vez de esos dos links debe aparecer uno de logout -->
+					<!-- Y otro para ver las encuestas realizadas -->
+					<a href="login?desde=index">Login</a><br/>
+					<a href="registro?desde=index">Registrarse</a>
+				</td>
+			</tr>
+			<tr><td><a href="crearEncuesta"><input type="button" value="Crear encuesta"/></a></td></tr>
+		</table>
+	</form>
+	<table style="width: 100%">
+		<tr>
+			<!-- La primera fila debe ir con los items subrayados ademas de en negrita, pero lo de la negrita ya lo hace el th -->
+			<th>Titulo</th>
+			<th>Fecha</th>
+			<th>Visitas</th>
+			<th>Num. respuestas</th>
+			<th>Num. comentarios</th>
+			<th>Usuario</th>
+			<th>Likes</th>
+		</tr>
+		<!-- Estas filas que vienen a continuación deben generarse por Django -->
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td><!-- Aqui van 2 botones para darle a like o dislike --></td>
+		</tr>
+	</table>
+</body>
+</html>

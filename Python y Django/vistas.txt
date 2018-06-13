@@ -1,0 +1,143 @@
+index
+
+login
+registrarse
+
+crearEncuesta
+verEncuesta
+misEncuestas
+
+
+###############################################
+############### ATENCION ######################
+###############################################
+# Aunque lo suyo seria usar generic views     #
+# solo vas a usarlo para hacer la lista de    #
+# encuestas en la página de misEncuestas.html #
+# para no perder el tiempo averiguando como   #
+# manejar peticiones GET y POST en un         #
+# genericView y como usar 2 genericViews con  #
+# una misma plantilla. De todos modos en      #
+# misEncuestas necesito recoger el usuario    #
+# del que mirar las encuestas                 #
+###############################################
+
+#Todas las paginas que envien datos deben redirigirse
+#a si mismas para comprobar y operar los datos enviados
+#antes de ir a la pagina siguiente. De esta forma seria
+#el metodo crearEncuesta el que realmente la crea en
+#vez de recibir los datos de la creacion de la encuesta
+#en una peticion post hecha a index para redirigir a index
+
+def index(request):
+	#si esta definido request.POST['usuario'] y contraseña
+	#entonces muestra el boton mis preguntas
+	#si no pues login y registrarse
+    encuestas = Encuesta.objects.all()
+    contexto = {
+		'nombreUsuario' : nombreUsuario,#Si no ha hecho login usar null
+		'encuestas' : encuestas,
+	}
+    return render(request, 'encuestas/index.html', contexto)
+
+def login(request):
+	#si esta definido request.POST['usuario'] y contraseña
+	#entonces muestra el boton mis preguntas
+	#si no pues login y registrarse
+    encuestas = Encuesta.objects.all()
+    contexto = {
+		'nombreUsuario' : nombreUsuario,#Si no ha hecho login usar null
+		'encuestas' : encuestas,
+	}
+    return render(request, 'encuestas/index.html', contexto)
+
+def registrarse(request):
+	#si esta definido request.POST['usuario'] y contraseña
+	#entonces muestra el boton mis preguntas
+	#si no pues login y registrarse
+    encuestas = Encuesta.objects.all()
+    contexto = {
+		'nombreUsuario' : nombreUsuario,#Si no ha hecho login usar null
+		'encuestas' : encuestas,
+	}
+    return render(request, 'encuestas/index.html', contexto)
+
+def verEncuesta(request):
+	#si esta definido request.POST['usuario'] y contraseña
+	#entonces muestra el boton mis preguntas
+	#si no pues login y registrarse
+    encuestas = Encuesta.objects.all()
+    contexto = {
+		'nombreUsuario' : nombreUsuario,#Si no ha hecho login usar null
+		'encuestas' : encuestas,
+	}
+    return render(request, 'encuestas/index.html', contexto)
+
+def crearEncuesta(request):
+	#si esta definido request.POST['usuario'] y contraseña
+	#entonces muestra el boton mis preguntas
+	#si no pues login y registrarse
+    encuestas = Encuesta.objects.all()
+    contexto = {
+		'nombreUsuario' : nombreUsuario,#Si no ha hecho login usar null
+		'encuestas' : encuestas,
+	}
+    return render(request, 'encuestas/index.html', contexto)
+
+
+
+
+
+
+
+
+
+
+
+
+from django.http import HttpResponse, HttpResponseRedirect 
+from django.template import loader 
+from django.shortcuts import render
+from django.urls import reverse
+from django.views import generic
+
+from .models import Pregunta 
+
+#def index(request): 
+#    preguntas = Pregunta.objects.all()
+#    contexto = { 'preguntas': preguntas }
+#    return render(request, 'encuestas/index.html', contexto)
+#
+#def detalles(request, id_pregunta): 
+#    pregunta = Pregunta.objects.get(id=id_pregunta)
+#    contexto = {'pregunta': pregunta }
+#    return render(request, 'encuestas/detalles.html', contexto)
+#
+#def resultados(request, id_pregunta): 
+#    pregunta = Pregunta.objects.get(id=id_pregunta)
+#    return render(request, 'encuestas/resultados.html', {'pregunta' : pregunta})
+
+def votar(request, id_pregunta):
+    pregunta = Pregunta.objects.get(id=id_pregunta)
+    respuesta_seleccionada = pregunta.respuesta_set.get(pk=request.POST['respuesta'])
+    respuesta_seleccionada.numVotos += 1
+    respuesta_seleccionada.save()
+    return HttpResponseRedirect(reverse('encuestas:resultados', args=(pregunta.id,)))
+
+class IndexView(generic.ListView):
+    template_name = 'encuestas/index.html'
+    context_object_name = 'preguntas'
+
+    def get_queryset(self):
+        """Return the last five published questions."""
+        return Pregunta.objects.all()
+
+
+class DetallesView(generic.DetailView):
+    model = Pregunta
+    template_name = 'encuestas/detalles.html'
+
+
+class ResultadosView(generic.DetailView):
+    model = Pregunta
+    template_name = 'encuestas/resultados.html'

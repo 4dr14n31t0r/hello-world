@@ -1,0 +1,77 @@
+<html>
+<head>
+<script>
+	<p><input type="text" placeholder="Pregunta"/><input type="button" value="X" onclick="clickEliminarPregunta(this)"/></p>
+	<p>
+		<!-- Solo se admiten encuestas con respuestas de tipo checkbox -->
+		<!-- TODO: Darle al usuario la capacidad de eliminar una respuesta despues de añadirla -->
+		<!-- TODO: En vez de poner una X en los botones de eliminar usar un icono de papelera -->
+		<!-- TODO: Añadir codigo Javascript para implementar funcionalidad de añadir y eliminar preguntas y respuestas -->
+		<input type="text" placeholder="respuesta"/><input type="button" value="X" onclick="clickEliminarOpcion(this)"/><br/>
+		<input type="text" placeholder="respuesta"/><input type="button" value="X" onclick="clickEliminarOpcion(this)"/><br/>
+		<input type="text" placeholder="respuesta"/><input type="button" value="X" onclick="clickEliminarOpcion(this)"/><br/>
+		<input type="button" value="Añadir opcion" onclick="clickAnadirOpcion(this)"/>
+	</p>
+function clickAnadirPregunta(boton){
+	parrafo1 = documents.createElement('p');
+	document.body.insertChild(parrafo1,-4);//Se supone que va antes del boton de añadir pregunta
+
+	inputPregunta = document.createElement('input');
+	parrafo1.add(inputPregunta);
+	inputPregunta.setAttibute('type','text');
+	inputPregunta.setAttibute('placeholder','Pregunta');
+
+	botonEliminarPregunta = document.createElement('input');
+	parrafo1.add(inputPregunta);
+	botonEliminarPregunta.setAttibute('type','button');
+	botonEliminarPregunta.setAttibute('value','X');
+	botonEliminarPregunta.setAttibute('onclick','clickEliminarPregunta(this)');
+
+	parrafo2 = documents.createElement('p');
+	document.body.insertChild(parrafo1,-4);//Se supone que va antes del boton de añadir pregunta
+}
+
+function clickEliminarPregunta(boton){
+}
+
+function clickAnadirOpcion(boton){
+}
+
+function clickEliminarOpcion(boton){
+}
+
+</script>
+</head>
+<body>
+	<table style="width: 100%">
+		<tr>
+			<td style="text-align: left"><a href="">Volver</a></td>
+			<td style="text-align: right">
+				<!-- Una vez hecho el login en vez de esos dos links debe aparecer uno de logout -->
+				<!-- De momento vamos a olvidarnos del perfil de usuario -->
+				<a href="login?desde=index">Login</a><br/>
+				<a href="registro?desde=index">Registrarse</a>
+			</td>
+		</tr>
+	</table>
+	<hr/>
+	<div style="text-align: center">
+		<input type="text" placeholder="Titulo" style="text-align: center"/><br/>
+		<textarea style="width:50%" placeholder="Descripcion"></textarea>
+	</div>
+	<p><input type="text" placeholder="Pregunta"/><input type="button" value="X" onclick="clickEliminarPregunta(this)"/></p>
+	<p>
+		<!-- Solo se admiten encuestas con respuestas de tipo checkbox -->
+		<!-- TODO: Darle al usuario la capacidad de eliminar una respuesta despues de añadirla -->
+		<!-- TODO: En vez de poner una X en los botones de eliminar usar un icono de papelera -->
+		<!-- TODO: Añadir codigo Javascript para implementar funcionalidad de añadir y eliminar preguntas y respuestas -->
+		<input type="text" placeholder="respuesta"/><input type="button" value="X" onclick="clickEliminarOpcion(this)"/><br/>
+		<input type="text" placeholder="respuesta"/><input type="button" value="X" onclick="clickEliminarOpcion(this)"/><br/>
+		<input type="text" placeholder="respuesta"/><input type="button" value="X" onclick="clickEliminarOpcion(this)"/><br/>
+		<input type="button" value="Añadir opcion" onclick="clickAnadirOpcion(this)"/>
+	</p>
+	<input type="button" value="Añadir pregunta" onclick="clickAnadirPregunta(this)"/>
+	<p/>
+	<input type="submit" value="Enviar"/>
+</body>
+</html>

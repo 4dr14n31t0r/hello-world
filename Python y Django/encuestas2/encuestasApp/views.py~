@@ -1,0 +1,99 @@
+from django.shortcuts import render
+from .models import Encuesta, Usuario
+
+def index(request):
+	#TODO: si esta definido request.POST['usuario'] y contraseña
+	#entonces muestra el boton mis preguntas y logout
+	#si no pues login y registrarse
+	encuestas = Encuesta.objects.all()
+	datosEncuestas = []
+	for encuesta in encuestas:
+		datosEncuestas.append({
+			'titulo':encuesta.titulo,
+			'fechaPub':encuesta.fechaPub,
+			'visitas':encuesta.visitas,
+			'numPreguntas':encuesta.pregunta_set.count(),
+			'numComentarios':encuesta.comentario_set.count(),
+			'usuario':encuesta.usuario.nombre,
+			'likes':encuesta.likes
+		})
+	contexto = {
+		'usuario' : None,
+		'datosEncuestas' : datosEncuestas
+	}
+	return render(request, 'encuestasApp/index.html', contexto)
+
+def login(request):
+	usuario = None
+	if 'usuario' in request.POST and 'contrasena' in request.POST:
+		nombreUsuario = request.POST['usuario']
+		contrasena = request.POST['contrasena']
+		usuario = Usuario.objects.filter(nombre=nombreUsuario, contrasena=contrasena)
+
+	if usuario is not None:
+		encuestas = Encuesta.objects.all()
+		datosEncuestas = []
+		for encuesta in encuestas:
+			datosEncuestas.append({
+				'titulo':encuesta.titulo,
+				'fechaPub':encuesta.fechaPub,
+				'visitas':encuesta.visitas,
+				'numPreguntas':encuesta.pregunta_set.count(),
+				'numComentarios':encuesta.comentario_set.count(),
+				'usuario':encuesta.usuario.nombre,
+				'likes':encuesta.likes
+			})
+		contexto = {
+			'usuario' : usuario,
+			'datosEncuestas' : datosEncuestas
+		}
+		return render(request, 'encuestasApp/index.html', contexto)
+
+	else:
+		return render(request, 'encuestasApp/login.html', {'usuario':usuario})
+
+def registrarse(request):
+	#si esta definido request.POST['usuario'] y contraseña
+	#entonces muestra el boton mis preguntas
+	#si no pues login y registrarse
+#	encuestas = Encuesta.objects.all()
+	contexto = {
+#		'nombreUsuario' : nombreUsuario,#Si no ha hecho login usar null
+#		'encuestas' : encuestas,
+	}
+	return render(request, 'encuestasApp/registrarse.html', contexto)
+
+def verEncuesta(request):
+	print('aAAAAAAAAAAAAAAAAAAAAAAAAAAAsdsssssssssssss')
+	#si esta definido request.POST['usuario'] y contraseña
+	#entonces muestra el boton mis preguntas
+	#si no pues login y registrarse
+#	encuestas = Encuesta.objects.all()
+	contexto = {
+#		'nombreUsuario' : nombreUsuario,#Si no ha hecho login usar null
+#		'encuestas' : encuestas,
+	}
+	return render(request, 'encuestasApp/verEncuesta.html', contexto)
+
+def crearEncuesta(request):
+	print('asdsssssssssssss')
+	#si esta definido request.POST['usuario'] y contraseña
+	#entonces muestra el boton mis preguntas
+	#si no pues login y registrarse
+#	encuestas = Encuesta.objects.all()
+	contexto = {
+#		'nombreUsuario' : nombreUsuario,#Si no ha hecho login usar null
+#		'encuestas' : encuestas,
+	}
+	return render(request, 'encuestasApp/crearEncuesta.html', contexto)
+
+def misEncuestas(request):
+	#si esta definido request.POST['usuario'] y contraseña
+	#entonces muestra el boton mis preguntas
+	#si no pues login y registrarse
+#	encuestas = Encuesta.objects.all()
+	contexto = {
+#		'nombreUsuario' : nombreUsuario,#Si no ha hecho login usar null
+#		'encuestas' : encuestas,
+	}
+	return render(request, 'encuestasApp/misEncuestas.html', contexto)

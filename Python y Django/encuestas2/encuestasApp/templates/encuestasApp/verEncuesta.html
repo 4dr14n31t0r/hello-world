@@ -1,0 +1,49 @@
+<html>
+<head>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'encuestasApp/estilos.css' %}"></link>
+</head>
+<body>
+	<table style="width: 100%">
+		<tr>
+			<td style="text-align: left"><a href="{% url 'encuestas2:index' %}">Volver</a></td>
+			<td style="text-align: right">
+				{% if login %}
+				<a href="{% url 'encuestas2:misEncuestas' %}">Mis encuestas<a/><br/>
+				<input type="submit" class="enlace" name="logout" value="Logout"/><br/>
+				{% else %}
+				<a href="{% url 'encuestas2:login' %}">Login</a><br/>
+				<a href="{% url 'encuestas2:registrarse' %}">Registrarse</a>
+				{% endif %}
+			</td>
+		</tr>
+	</table>
+	<hr/>
+	<h1 style="text-align: center">{{encuesta.titulo}}</h1>
+	<p>{{encuesta.descripcion}}</p>
+	<form action="" method="post">
+	{% csrf_token %}
+	{% for pregunta in preguntas %}
+	<h3>{{pregunta.texto}}</h3>
+	<p>
+		{% for respuesta in pregunta.respuestas %}
+		<input type="checkbox" name="respuesta" id="{{respuesta.id}}" value="{{respuesta.id}}"/>
+		<label for="{{respuesta.id}}">{{respuesta.texto}} ({{respuesta.votos}} votos)</label><br/>
+		{% endfor %}
+	</p>
+	{% endfor %}
+	<input type="submit" name="enviar" value="Enviar"/>
+	<hr/>
+	<h2>Comentarios</h2>
+	{% if login %}
+		<textarea name="comentario" style="width:50%" placeholder="Comentario"></textarea><br/>
+		<input type="submit" name="publicar" value="Enviar"/>
+	{% else %}
+	Tienes que hacer login para poder publicar un comentario
+	{% endif %}
+	</form>
+	{% for comentario in comentarios %}
+	<p><b>{{comentario.usuario.nombre}}</b><br/>{{comentario.texto}}</p>
+	{% endfor %}
+</body>
+</html>

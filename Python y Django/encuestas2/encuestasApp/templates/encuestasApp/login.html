@@ -1,0 +1,32 @@
+<html>
+<head></head>
+<body>
+	<table style="width: 100%">
+		<tr>
+			<td style="text-align: left"><a href="{% url 'encuestas2:index' %}">Volver</a></td>
+			<td style="text-align: right"><a href="{% url 'encuestas2:registrarse' %}">Registrarse</a></td>
+		</tr>
+	</table>
+	<hr/>
+	<form action="" method="post">
+		{% csrf_token %}
+		<h1 align="center">Login</h1>
+		<table align="center">
+			<tr>
+				<td>Usuario:</td>
+				<td><input type="text" name="usuario"/></td>
+			</tr>
+			<tr>
+				<td>Contraseña:</td>
+				<td><input type="password" name="contrasena"/></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="hacerLogin" value="Enviar"/></td>
+			</tr>
+		</table>
+	</form>
+	{% if hayAlgunError %}
+	<p style="text-align: center; color: red;">{{mensajeDeError}}</p>
+	{% endif %}
+</body>
+</html>
